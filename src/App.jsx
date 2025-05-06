@@ -1,40 +1,56 @@
-import React from "react";
-import { useState } from "react";
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 const App = () => {
-  const[input, setInput] = useState("");
-  const[output, setOutput] = useState("");
-  function upper () {
+  const [input, setInput] = useState("");
+  const [output, setOutput] = useState("");
+
+  const upper = () => {
     setOutput(input.toUpperCase());
-  }
-  function lower () {
+  };
+
+  const lower = () => {
     setOutput(input.toLowerCase());
-  }
-  function reverse () {
+  };
+
+  const reverse = () => {
     setOutput(input.split("").reverse().join(""));
-  }
+  };
+
+  const clear = () => {
+    setInput("");
+    setOutput("");
+  };
+
   return (
-    <div>
-    <h1>Text Converter</h1>
+    <div className="text-converter-container">
+      <h1 className="text-converter-title">Text Converter</h1>
       <input
-        type = "text"
-        value = {input}
+        type="text"
+        value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder='Enter text'
+        placeholder="Enter text"
+        className="text-converter-input"
       />
-      <div>
-      <p>
-        <button onClick={upper}>Upper Case</button>
-        </p>
-        <p>
-        <button onClick={lower}>Lower Case</button></p>
-        <p>
-        <button onClick={reverse}>Reverse</button></p>
+      <div className="button-container">
+        <button onClick={upper} className="converter-button">
+          Upper Case
+        </button>
+        <button onClick={lower} className="converter-button">
+          Lower Case
+        </button>
+        <button onClick={reverse} className="converter-button">
+          Reverse
+        </button>
+        <button onClick={clear} className="converter-button clear-button">
+          Clear
+        </button>
       </div>
-      <p>{output}</p>
+      <div className="output-container">
+        <p className="output-text">{output}</p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default App;
